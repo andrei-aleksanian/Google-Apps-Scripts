@@ -3,13 +3,19 @@
 A working example of how to use Google Apps Scripts from your own Node application.
 (The node application itself is just a template from `npx --package express-generator express`)
 
+## Important Files
+
+`routes/utils/makeFormTemplate.gs` - an example of making a Google Apps Script which makes a form
+
+`routes/utils/googleAPI.js` - wrapper functions for Google authentication
+
+`routes/form.js` - POST endpoint which calls a google function by passing the function name and id
+
 ## An example of a POST endpoint
 
 `projectNmae/routes/form.js` is the POST endpoint
 
-and 
-
-`projectNmae/routes/utils/googleAPI.js` is the wrapper functions needed to use the google API
+`routes/utils/googleAPI.js` is the wrapper functions needed to use the google API
 
 ### How to get started
 
@@ -24,7 +30,7 @@ and
 desktop`(I used `desktop`, but I think it will need to be `web app` for production)
 9. Exit the screen and click the download button on the right for the created OAuth client
 10. Rename it to `credentials.json` and keep in the root directory of the project. Do not commit it.
-11. Open your cloud script that you want to run (go to Apps Scripts, make a project and write a function)
+11. Open your cloud script that you want to run (`routes/utils/makeFormTemplate.gs` is an example of making a GSS form template`go to Apps Scripts, make a project and write a function)
 12. Choose `Resources > Cloud Platform project`
 13. Paste your `project number` in (can be found on GCP dashboard)
 14. Once done, choose `Publish > Deploy as API executable`
@@ -52,7 +58,7 @@ If you are changing the `SCOPES`, delete `token.json` before the first request t
 Put:
 
 
-`  await googleAuth(callAppsScript, {id: '*functionId*', name: '*functionName*'});`
+`  await googleAuth({id: '*functionId*', name: '*functionName*'});`
 
 in the endpoint. If everything is configured correctly, it will execute. 
 
