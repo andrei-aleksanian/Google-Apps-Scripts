@@ -9,7 +9,7 @@
 * 6. Choose 'Credentials' > 'Configure Consent Screen' > 'Internal'
 * 7. Fill in your details
 * 8. Choose 'Credentials' > 'Create Credentials' > 'OAuth client' >
-* 'Web app?'(I used desktop but I think it will need to be web app for production)
+* 'Web app?'(I used desktop, but I think it will need to be web app for production)
 * 9. Exit the screen and click the download button on the right for the created OAuth client
 * 10. Rename it to 'credentials.json' and keep in the root directory of the project. Do not commit it.
 * 11. Open your cloud script that you want to run (go to Apps Scripts, make a project and write a function)
@@ -40,13 +40,13 @@ const SCOPES = [
 // time.
 const TOKEN_PATH = 'token.json';
 
-const googleAuth = (apiCall) => {
+const googleAuth = (apiCall, {id, name}) => {
   debug('authenticating');
 // Load client secrets from a local file.
   fs.readFile('credentials.json', (err, content) => {
     if (err) return console.log('Error loading client secret file:', err);
     // Authorize a client with credentials, then call the Google Drive API.
-    authorize(JSON.parse(content), apiCall);
+    authorize(JSON.parse(content), apiCall, {id, name});
   });
 
   /**
@@ -54,8 +54,9 @@ const googleAuth = (apiCall) => {
    * given callback function.
    * @param {Object} credentials The authorization client credentials.
    * @param {function} callback The callback to call with the authorized client.
+   * @param {Object} payload with id and name of executing function
    */
-  function authorize(credentials, callback) {
+  function authorize(credentials, callback, {id, name}) {
     const {client_secret, client_id, redirect_uris} = credentials.installed;
     const oAuth2Client = new google.auth.OAuth2(
       client_id, client_secret, redirect_uris[0]);
@@ -64,7 +65,7 @@ const googleAuth = (apiCall) => {
     fs.readFile(TOKEN_PATH, (err, token) => {
       if (err) return getAccessToken(oAuth2Client, callback);
       oAuth2Client.setCredentials(JSON.parse(token));
-      callback(oAuth2Client);
+      callback(oAuth2Client, id, name);
     });
   }
 

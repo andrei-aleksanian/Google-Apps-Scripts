@@ -9,16 +9,18 @@ const googleAuth = require('./utils/googleAPI');
  * Drive folder.
  *
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
+ * @param {string} id The id of the Google Apps Script
+ * @param {string} name The name of the Google Apps Script function
  */
-function callAppsScript(auth) { // eslint-disable-line no-unused-vars
-  const scriptId = 'MKFBH_NiLg7Jjp3YIPbP1QLU2UhZLtYfG';
+function callAppsScript(auth, id, name) { // eslint-disable-line no-unused-vars
+  const scriptId = id;
   const script = google.script('v1');
 
   // Make the API request. The request object is included here as 'resource'.
   script.scripts.run({
     auth: auth,
     resource: {
-      function: 'createTemplateForm',
+      function: name,
     },
     scriptId: scriptId,
   }, function(err, resp) {
@@ -54,9 +56,9 @@ function callAppsScript(auth) { // eslint-disable-line no-unused-vars
 }
 
 /* GET users listing. */
-router.get('/', async function(req, res, next) {
+router.post('/', async function(req, res, next) {
   debug('posted');
-  await googleAuth(callAppsScript);
+  await googleAuth(callAppsScript, {id: 'MKFBH_NiLg7Jjp3YIPbP1QLU2UhZLtYfG', name: 'createTemplateForm'});
   res.send('Google form created');
 });
 
