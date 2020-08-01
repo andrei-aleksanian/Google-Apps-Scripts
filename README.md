@@ -49,7 +49,7 @@ If you are changing the `SCOPES`, delete `token.json` before the first request t
 
 #### Example
 
-Put:  await googleAuth(callAppsScript, {id: 'MKFBH_NiLg7Jjp3YIPbP1QLU2UhZLtYfG', name: 'createTemplateForm'});
+Put:
 
 
 `  await googleAuth(callAppsScript, {id: '*functionId*', name: '*functionName*'});`
