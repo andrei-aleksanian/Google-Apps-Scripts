@@ -1,7 +1,7 @@
 # Google Apps Scripts
 
 A working example of how to use Google Apps Scripts from your own Node application.
-(The node application itself is just a template from 'npx --package express-generator express')
+(The node application itself is just a template from `npx --package express-generator express`)
 
 ## An example of a POST endpoint
 
