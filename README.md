@@ -19,8 +19,8 @@ A working example of how to use Google Apps Scripts from your own Node applicati
 
 ### How to get started
 
-1. Get a G-suite account
-2. Log into the G-suite account.
+1. Clone the repository.
+2. Log into your Google account.
 3. Make a GCP(Google Cloud Platform) project (you will need to input your domain name)
 4. Enable `Apps Script` API in marketplace
 5. Go to(stay at) the management board
@@ -38,10 +38,10 @@ desktop`(I used `desktop`, but I think it will need to be `web app` for producti
 16. Paste the name of the function into params of `scripts.run({..., function: *name here*, ... })`
 17. Make sure you have the correct `SCOPES` specified. The current ones are for running the scripts on forms only
 18. Start the server
-19. Make a POST request to the form endpoint
+19. Make a POST request to the `/form` endpoint
 20. On the first request, it will ask you to allow the app to use forms on your account. Allow.
 21. It will then store a token on your machine. Do not commit it. (Just like credentials.json)
-22. You are done!
+22. You are done! Place the token.json in the same directory as googleForm function.
 
 ### Creating more endpoints
 
