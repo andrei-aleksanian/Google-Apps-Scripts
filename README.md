@@ -41,7 +41,7 @@ desktop`(I used `desktop`, but I think it will need to be `web app` for producti
 19. Make a POST request to the `/form` endpoint
 20. On the first request, it will ask you to allow the app to use forms on your account. Allow.
 21. It will then store a token on your machine. Do not commit it. (Just like credentials.json)
-22. You are done! Place the token.json in the same directory as googleForm function.
+22. You are done! Place the `token.json in` the same directory as googleForm function.
 
 ### Creating more endpoints
 
